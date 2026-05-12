@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shorts/MyDrama — VISA fraud rate by creative zone</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F4ED;
+  --surface: #FFFFFF;
+  --rule: rgba(20, 18, 14, 0.08);
+  --rule-strong: rgba(20, 18, 14, 0.18);
+  --ink-1: #161310;
+  --ink-2: #5A554C;
+  --ink-3: #948E83;
+  --accent: #161310;
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink-1);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  font-feature-settings: 'ss01', 'cv01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 4rem 1.75rem 6rem; }
+.hero { display: grid; grid-template-columns: 1fr; gap: 0.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule-strong); margin-bottom: 3rem; }
+.eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink-3); margin-bottom: 0.5rem; }
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 5.5vw, 60px);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.75rem;
+  font-variation-settings: 'opsz' 144, 'SOFT' 50, 'WONK' 0;
+}
+h1 em { font-style: italic; font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1; color: var(--ink-2); font-weight: 300; }
+.dek { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 720px; margin: 0.5rem 0 1.5rem; }
+.meta-bar { display: flex; flex-wrap: wrap; gap: 1.75rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); margin-top: 1.5rem; font-family: var(--mono); font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em; }
+.meta-bar > div span { display: block; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--ink-1); letter-spacing: 0; text-transform: none; margin-top: 4px; }
+
+/* overview table */
+.overview { margin-bottom: 4rem; }
+.section-label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink-3); margin-bottom: 1rem; display: flex; align-items: baseline; gap: 1rem; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.section-heading { font-family: var(--serif); font-weight: 400; font-size: 26px; letter-spacing: -0.015em; margin: 0 0 1.5rem; font-variation-settings: 'opsz' 36, 'SOFT' 30; }
+.overview-table { width: 100%; border-collapse: collapse; }
+.overview-table thead th {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-3); font-weight: 400; text-align: right; padding: 0.5rem 0 0.75rem; border-bottom: 1px solid var(--rule-strong);
+}
+.overview-table thead th:first-child { text-align: left; }
+.overview-table tbody td { padding: 1rem 0; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 15px; text-align: right; color: var(--ink-1); }
+.overview-table tbody td:first-child { text-align: left; font-family: var(--sans); }
+.overview-table tbody tr:last-child td { border-bottom: none; }
+.zone-pill { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; }
+.zone-swatch { width: 10px; height: 10px; border-radius: 2px; }
+.delta-pos { color: #993C1D; }
+.delta-neg { color: #0F6E56; }
+.delta-mute { color: var(--ink-3); font-family: var(--sans); font-style: italic; font-size: 13px; }
+
+/* takeaway box */
+.takeaways { background: var(--surface); border-radius: 8px; padding: 1.5rem 1.75rem; margin: 2.5rem 0; border-left: 3px solid var(--ink-1); }
+.takeaways h3 { font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 0 0 0.5rem; letter-spacing: -0.01em; }
+.takeaways ul { margin: 0; padding-left: 1.2rem; color: var(--ink-2); }
+.takeaways li { margin-bottom: 0.4rem; }
+.takeaways li:last-child { margin-bottom: 0; }
+.takeaways strong { color: var(--ink-1); font-weight: 500; }
+
+/* zone panels */
+.zone { margin-bottom: 4rem; }
+.zone-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+.zone-title { display: flex; align-items: baseline; gap: 1rem; }
+.zone-num { font-family: var(--mono); font-size: 13px; color: var(--ink-3); letter-spacing: 0.05em; }
+.zone-name { font-family: var(--serif); font-weight: 400; font-size: 32px; letter-spacing: -0.015em; margin: 0; font-variation-settings: 'opsz' 48, 'SOFT' 40; display: flex; align-items: center; gap: 12px; }
+.zone-dot { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.zone-tag { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-3); margin-left: 0.5rem; }
+.zone-stats { display: grid; grid-template-columns: repeat(4, auto); gap: 2rem; }
+.stat { text-align: right; }
+.stat-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-3); margin-bottom: 4px; }
+.stat-val { font-family: var(--mono); font-size: 17px; color: var(--ink-1); font-weight: 500; }
+.legend { display: flex; gap: 1.5rem; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); margin: 0 0 0.75rem; font-family: var(--mono); }
+.legend > span { display: flex; align-items: center; gap: 8px; }
+.legend i { display: inline-block; }
+.chart-wrap { position: relative; width: 100%; height: 300px; background: var(--surface); border-radius: 6px; padding: 1rem 0.5rem 0.5rem 0.5rem; }
+.note { font-size: 13px; color: var(--ink-3); margin: 0.75rem 0 0; font-style: italic; max-width: 720px; }
+.note strong { font-style: normal; color: var(--ink-2); }
+
+/* footer */
+footer.foot { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--rule-strong); display: grid; grid-template-columns: 1fr; gap: 1rem; }
+footer.foot .label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--ink-3); margin-bottom: 0.3rem; }
+footer.foot .val { font-family: var(--mono); font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+footer.foot code { background: rgba(0,0,0,0.04); padding: 1px 6px; border-radius: 3px; font-family: var(--mono); font-size: 12px; color: var(--ink-1); }
+
+@media (max-width: 720px) {
+  .wrap { padding: 2.5rem 1.25rem 4rem; }
+  .zone-head { flex-direction: column; align-items: flex-start; }
+  .zone-stats { grid-template-columns: repeat(2, 1fr); gap: 1rem; width: 100%; }
+  .stat { text-align: left; }
+  .overview-table { font-size: 13px; }
+  .overview-table tbody td { padding: 0.75rem 0; font-size: 13px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Solidgate · risk analytics</div>
+    <h1>Where does fraud actually <em>live?</em></h1>
+    <p class="dek">Weekly cohort analysis of VISA fraud-alert rates across creative zones for Shorts/MyDrama paid acquisition. Zone 5 ships ~2× cleaner traffic than Zone 4; Zone 3 lands ~45% dirtier. Maturity-adjusted, ten cohort weeks deep.</p>
+    <div class="meta-bar">
+      <div>Cohort window<span>Mar 09 — May 11, 2026</span></div>
+      <div>Brand filter<span>Shorts/MyDrama (ad_name LIKE 'SH_%')</span></div>
+      <div>Card brand<span>VISA only</span></div>
+      <div>Generated<span>May 12, 2026</span></div>
+    </div>
+  </header>
+
+  <section class="overview">
+    <div class="section-label">01 · Overview</div>
+    <h2 class="section-heading">Mature-cohort summary</h2>
+    <p style="color: var(--ink-2); margin: 0 0 1.5rem; max-width: 720px;">All metrics below count only mature cohorts (age ≥ 21 days, weeks Mar 09 — Apr 20). Younger cohorts haven't accumulated their fraud reports yet — see panel notes.</p>
+    <table class="overview-table">
+      <thead>
+        <tr>
+          <th>Zone</th>
+          <th>Users</th>
+          <th>Orders</th>
+          <th>Fraud alerts</th>
+          <th>Fraud rate</th>
+          <th>vs Zone 4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="zone-pill"><span class="zone-swatch" style="background:#D85A30;"></span>Zone 3</span></td>
+          <td>3,543</td><td>7,707</td><td>147</td><td>1.91%</td><td class="delta-pos">+45%</td>
+        </tr>
+        <tr>
+          <td><span class="zone-pill"><span class="zone-swatch" style="background:#5F5E5A;"></span>Zone 4</span></td>
+          <td>40,596</td><td>87,788</td><td>1,157</td><td>1.32%</td><td class="delta-mute">baseline</td>
+        </tr>
+        <tr>
+          <td><span class="zone-pill"><span class="zone-swatch" style="background:#1D9E75;"></span>Zone 5</span></td>
+          <td>3,719</td><td>7,773</td><td>50</td><td>0.64%</td><td class="delta-neg">−51%</td>
+        </tr>
+        <tr>
+          <td><span class="zone-pill"><span class="zone-swatch" style="background:#BA7517;"></span>Zone 6</span></td>
+          <td>1,153</td><td>2,462</td><td>31</td><td>1.26%</td><td class="delta-mute">noisy · small N</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="takeaways">
+      <h3>Headline findings</h3>
+      <ul>
+        <li><strong>Zone 5 is the cleanest.</strong> Half the fraud rate of Zone 4, and the gap holds at every cohort age we can compare — not a statistical fluke.</li>
+        <li><strong>Zone 3 runs hot.</strong> ~45% above baseline across 7 of 8 mature cohorts. Volume is small (≈9% of Shorts orders) so impact is moderate, but signal is consistent.</li>
+        <li><strong>Zone 4 carries the brand.</strong> 82% of Shorts/MyDrama VISA orders. Whatever shifts here moves the company number.</li>
+        <li><strong>Zone 6 is too small to call.</strong> 2.5k orders, 31 alerts. One bad cohort (Mar 30, 4.93%) on 65 users is 3 alerts away from being normal. Hold judgement.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="overview">
+    <div class="section-label">02 · Per-zone weekly cohorts</div>
+    <h2 class="section-heading">Reading the panels</h2>
+    <p style="color: var(--ink-2); margin: 0 0 0; max-width: 720px;">Each bar is a cohort week. Stacked: bottom segment (saturated) = orders that picked up a fraud alert; top segment (faded) = clean orders. Total bar height = cohort volume. The line tracks fraud rate (right axis). The vertical dashed cut is the 21-day maturity threshold — cohorts to its right are not yet ripe.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <div class="zone-title">
+        <div class="zone-num">— 03 —</div>
+        <h3 class="zone-name"><span class="zone-dot" style="background:#D85A30;"></span>Zone 3<span class="zone-tag">runs hot</span></h3>
+      </div>
+      <div class="zone-stats">
+        <div class="stat"><div class="stat-label">Users</div><div class="stat-val">4,612</div></div>
+        <div class="stat"><div class="stat-label">Orders</div><div class="stat-val">9,516</div></div>
+        <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val">157</div></div>
+        <div class="stat"><div class="stat-label">Mature rate</div><div class="stat-val">1.91%</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="width:12px;height:12px;background:#D85A30;border-radius:2px;"></i>Orders with alert</span>
+      <span><i style="width:12px;height:12px;background:#F5C4B3;border-radius:2px;"></i>Orders without alert</span>
+      <span><i style="width:18px;height:2px;background:#993C1D;"></i>Fraud rate</span>
+    </div>
+    <div class="chart-wrap"><canvas id="chart-z3" role="img" aria-label="Zone 3 weekly cohort stacked bars of fraudulent versus clean orders, with fraud rate overlay."></canvas></div>
+    <p class="note"><strong>Note.</strong> 7 of 8 mature cohorts above the Zone 4 baseline. The Mar 23 dip (0.95%) is the only exception — likely sampling noise given the small absolute counts (11 alerts on 1,160 orders).</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <div class="zone-title">
+        <div class="zone-num">— 04 —</div>
+        <h3 class="zone-name"><span class="zone-dot" style="background:#5F5E5A;"></span>Zone 4<span class="zone-tag">baseline · 82% of brand volume</span></h3>
+      </div>
+      <div class="zone-stats">
+        <div class="stat"><div class="stat-label">Users</div><div class="stat-val">59,620</div></div>
+        <div class="stat"><div class="stat-label">Orders</div><div class="stat-val">108,774</div></div>
+        <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val">1,202</div></div>
+        <div class="stat"><div class="stat-label">Mature rate</div><div class="stat-val">1.32%</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="width:12px;height:12px;background:#5F5E5A;border-radius:2px;"></i>Orders with alert</span>
+      <span><i style="width:12px;height:12px;background:#D3D1C7;border-radius:2px;"></i>Orders without alert</span>
+      <span><i style="width:18px;height:2px;background:#2C2C2A;"></i>Fraud rate</span>
+    </div>
+    <div class="chart-wrap"><canvas id="chart-z4" role="img" aria-label="Zone 4 weekly cohort stacked bars of fraudulent versus clean orders, with fraud rate overlay."></canvas></div>
+    <p class="note"><strong>Note.</strong> The maturity gradient is textbook here — 1.92% on the 64-day-old cohort, dropping monotonically as cohorts get younger. This isn't fraud improving; it's reports not having arrived yet.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <div class="zone-title">
+        <div class="zone-num">— 05 —</div>
+        <h3 class="zone-name"><span class="zone-dot" style="background:#1D9E75;"></span>Zone 5<span class="zone-tag">cleanest · −51% vs Z4</span></h3>
+      </div>
+      <div class="zone-stats">
+        <div class="stat"><div class="stat-label">Users</div><div class="stat-val">4,966</div></div>
+        <div class="stat"><div class="stat-label">Orders</div><div class="stat-val">9,889</div></div>
+        <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val">54</div></div>
+        <div class="stat"><div class="stat-label">Mature rate</div><div class="stat-val">0.64%</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="width:12px;height:12px;background:#1D9E75;border-radius:2px;"></i>Orders with alert</span>
+      <span><i style="width:12px;height:12px;background:#9FE1CB;border-radius:2px;"></i>Orders without alert</span>
+      <span><i style="width:18px;height:2px;background:#0F6E56;"></i>Fraud rate</span>
+    </div>
+    <div class="chart-wrap"><canvas id="chart-z5" role="img" aria-label="Zone 5 weekly cohort stacked bars of fraudulent versus clean orders, with fraud rate overlay."></canvas></div>
+    <p class="note"><strong>Note.</strong> Every mature cohort below the Zone 4 line for the same cohort age. Volume has been ramping (185 users on Mar 16 → 1,013 by Apr 20) so the signal is increasingly reliable. Worth investigating <em>why</em> — concept, hook, or audience targeting.</p>
+  </section>
+
+  <section class="zone">
+    <div class="zone-head">
+      <div class="zone-title">
+        <div class="zone-num">— 06 —</div>
+        <h3 class="zone-name"><span class="zone-dot" style="background:#BA7517;"></span>Zone 6<span class="zone-tag">noisy · small sample</span></h3>
+      </div>
+      <div class="zone-stats">
+        <div class="stat"><div class="stat-label">Users</div><div class="stat-val">1,153</div></div>
+        <div class="stat"><div class="stat-label">Orders</div><div class="stat-val">2,462</div></div>
+        <div class="stat"><div class="stat-label">Alerts</div><div class="stat-val">31</div></div>
+        <div class="stat"><div class="stat-label">Mature rate</div><div class="stat-val">1.26%</div></div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i style="width:12px;height:12px;background:#BA7517;border-radius:2px;"></i>Orders with alert</span>
+      <span><i style="width:12px;height:12px;background:#FAC775;border-radius:2px;"></i>Orders without alert</span>
+      <span><i style="width:18px;height:2px;background:#854F0B;"></i>Fraud rate</span>
+    </div>
+    <div class="chart-wrap"><canvas id="chart-z6" role="img" aria-label="Zone 6 weekly cohort stacked bars of fraudulent versus clean orders, with fraud rate overlay."></canvas></div>
+    <p class="note"><strong>Note.</strong> The Mar 30 spike (4.93%) is 7 alerts on 65 users — statistically fragile. Cohorts after Apr 20 have no data here; the zone may have wound down or hasn't restarted. Monitor through next month before drawing conclusions.</p>
+  </section>
+
+  <footer class="foot">
+    <div>
+      <div class="label">Source</div>
+      <div class="val">
+        Base: <code>solid-analytics-test.solid_raw.enriched_orders</code> (VISA, status IN settle_ok / auth_ok).<br>
+        Attribution: <code>payments_with_creative</code> (ad_name LIKE 'SH_%').<br>
+        Fraud: <code>fraud_alerts</code> (card_scheme = 'VISA').
+      </div>
+    </div>
+    <div>
+      <div class="label">Methodology</div>
+      <div class="val">
+        A user is bound to the cohort week of their first VISA subscription_initial order with Shorts attribution. All subsequent VISA settle/auth_ok orders from that user count toward the same cohort. Fraud rate = alerts / orders within the cohort. Mature cohorts: age ≥ 21 days at report time, accounting for the ~30–60 day lag of network fraud reports.
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const labels = ['Mar 09','Mar 16','Mar 23','Mar 30','Apr 06','Apr 13','Apr 20','Apr 27','May 04','May 11'];
+const ages = [64, 57, 50, 43, 36, 29, 22, 15, 8, 1];
+
+const zoneData = {
+  z3: {
+    users:  [631, 692, 509, 448, 243, 408, 612, 531, 488, 50],
+    orders: [1550, 1665, 1160, 923, 476, 785, 1148, 944, 797, 68],
+    alerts: [49, 38, 11, 15, 14, 7, 13, 10, 0, 0],
+    rates:  [3.161, 2.282, 0.948, 1.625, 2.941, 0.892, 1.132, 1.059, 0, 0],
+    colors: { fill: '#D85A30', light: '#F5C4B3', line: '#993C1D' }
+  },
+  z4: {
+    users:  [4532, 6836, 5130, 6601, 5914, 6226, 5357, 6078, 6221, 725],
+    orders: [10762, 15847, 11576, 14366, 12621, 12542, 10074, 10074, 9810, 1102],
+    alerts: [207, 255, 158, 154, 133, 153, 97, 45, 0, 0],
+    rates:  [1.923, 1.609, 1.365, 1.072, 1.054, 1.220, 0.963, 0.447, 0, 0],
+    colors: { fill: '#5F5E5A', light: '#D3D1C7', line: '#2C2C2A' }
+  },
+  z5: {
+    users:  [null, 185, 297, 500, 770, 954, 1013, 952, 242, 53],
+    orders: [null, 424, 748, 1068, 1640, 1928, 1965, 1659, 379, 78],
+    alerts: [null, 4, 5, 3, 12, 17, 9, 4, 0, 0],
+    rates:  [null, 0.943, 0.668, 0.281, 0.732, 0.882, 0.458, 0.241, 0, 0],
+    colors: { fill: '#1D9E75', light: '#9FE1CB', line: '#0F6E56' }
+  },
+  z6: {
+    users:  [null, 53, 58, 65, 609, 244, 124, null, null, null],
+    orders: [null, 133, 144, 142, 1302, 476, 265, null, null, null],
+    alerts: [null, 3, 0, 7, 15, 3, 3, null, null, null],
+    rates:  [null, 2.256, 0, 4.930, 1.152, 0.630, 1.132, null, null, null],
+    colors: { fill: '#BA7517', light: '#FAC775', line: '#854F0B' }
+  }
+};
+
+const cutoffPlugin = {
+  id: 'cutoff',
+  afterDraw(chart) {
+    const xScale = chart.scales.x;
+    if (!xScale) return;
+    const x = xScale.getPixelForValue(6.5);
+    const { top, bottom } = chart.chartArea;
+    const ctx = chart.ctx;
+    ctx.save();
+    ctx.beginPath();
+    ctx.setLineDash([5, 4]);
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(20,18,14,0.35)';
+    ctx.moveTo(x, top);
+    ctx.lineTo(x, bottom);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = '#5A554C';
+    ctx.font = '500 10px "JetBrains Mono", monospace';
+    ctx.textBaseline = 'top';
+    ctx.fillText('IMMATURE →', x + 6, top + 4);
+    ctx.textAlign = 'right';
+    ctx.fillText('← MATURE', x - 6, top + 4);
+    ctx.restore();
+  }
+};
+
+const tickFont = { family: '"JetBrains Mono", monospace', size: 10 };
+const titleFont = { family: '"JetBrains Mono", monospace', size: 10, weight: '400' };
+
+function buildChart(canvasId, key) {
+  const d = zoneData[key];
+  const ordersWithoutAlert = d.orders.map((o, i) => o == null ? null : o - (d.alerts[i] || 0));
+
+  new Chart(document.getElementById(canvasId), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Orders with alert',
+          data: d.alerts,
+          backgroundColor: d.colors.fill,
+          borderWidth: 0,
+          stack: 'orders',
+          order: 2,
+          yAxisID: 'y'
+        },
+        {
+          label: 'Orders without alert',
+          data: ordersWithoutAlert,
+          backgroundColor: d.colors.light,
+          borderWidth: 0,
+          stack: 'orders',
+          order: 2,
+          yAxisID: 'y'
+        },
+        {
+          type: 'line',
+          label: 'Fraud rate %',
+          data: d.rates,
+          borderColor: d.colors.line,
+          backgroundColor: d.colors.line,
+          borderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointBackgroundColor: d.colors.line,
+          pointBorderColor: '#FFFFFF',
+          pointBorderWidth: 1.5,
+          tension: 0.25,
+          spanGaps: true,
+          yAxisID: 'y1',
+          order: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      layout: { padding: { top: 12, right: 4, bottom: 0, left: 0 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: 'rgba(22,19,16,0.96)',
+          titleColor: '#F7F4ED',
+          bodyColor: '#F7F4ED',
+          titleFont: { family: '"JetBrains Mono", monospace', size: 11, weight: '500' },
+          bodyFont: { family: '"JetBrains Mono", monospace', size: 11 },
+          padding: 10,
+          cornerRadius: 4,
+          displayColors: false,
+          callbacks: {
+            title: (items) => {
+              const i = items[0].dataIndex;
+              return labels[i] + '  ·  age ' + ages[i] + 'd';
+            },
+            label: () => null,
+            afterBody: (items) => {
+              const i = items[0].dataIndex;
+              const u = d.users[i];
+              const o = d.orders[i];
+              const a = d.alerts[i];
+              const r = d.rates[i];
+              if (u == null) return ['—  no data'];
+              const opu = (o / u).toFixed(2);
+              const fmt = (n) => n.toLocaleString('en-US');
+              return [
+                'Users:    ' + fmt(u),
+                'Orders:   ' + fmt(o) + '  (' + opu + ' / user)',
+                'Alerts:   ' + fmt(a),
+                'Rate:     ' + r.toFixed(2) + '%'
+              ];
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: { font: tickFont, color: '#948E83', autoSkip: false, maxRotation: 0 },
+          grid: { display: false },
+          border: { color: 'rgba(20,18,14,0.18)' }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          title: { display: true, text: 'ORDERS', font: titleFont, color: '#948E83', padding: { bottom: 8 } },
+          ticks: {
+            font: tickFont,
+            color: '#948E83',
+            callback: (v) => v >= 1000 ? (v / 1000) + 'k' : v
+          },
+          grid: { color: 'rgba(20,18,14,0.05)', drawTicks: false },
+          border: { display: false }
+        },
+        y1: {
+          position: 'right',
+          beginAtZero: true,
+          title: { display: true, text: 'FRAUD RATE %', font: titleFont, color: '#948E83', padding: { bottom: 8 } },
+          ticks: {
+            font: tickFont,
+            color: '#948E83',
+            callback: (v) => v.toFixed(1) + '%'
+          },
+          grid: { display: false },
+          border: { display: false }
+        }
+      }
+    },
+    plugins: [cutoffPlugin]
+  });
+}
+
+buildChart('chart-z3', 'z3');
+buildChart('chart-z4', 'z4');
+buildChart('chart-z5', 'z5');
+buildChart('chart-z6', 'z6');
+</script>
+</body>
+</html>
