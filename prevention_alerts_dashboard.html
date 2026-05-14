@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prevention Alerts — январь 2026 | MyDrama</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Source Sans 3', system-ui, sans-serif;
+    background: #FAFAF7;
+    color: #1A1A18;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid #E5E5DE;
+    padding-bottom: 24px;
+    margin-bottom: 48px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .subtitle {
+    font-size: 18px;
+    color: #5F5E5A;
+    font-weight: 400;
+  }
+  .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #888780;
+  }
+  .meta-item { display: flex; align-items: center; gap: 6px; }
+
+  /* Executive Summary */
+  .exec-summary {
+    background: #1A1A18;
+    color: #FAFAF7;
+    padding: 32px;
+    border-radius: 12px;
+    margin-bottom: 48px;
+  }
+  .exec-summary h2 {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B4B2A9;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .exec-summary p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .exec-summary p:last-child { margin-bottom: 0; }
+  .exec-summary strong { color: #F0997B; font-weight: 600; }
+
+  /* KPI cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 56px;
+  }
+  .kpi {
+    background: white;
+    border: 1px solid #E5E5DE;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .kpi-label {
+    font-size: 13px;
+    color: #6B6B66;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .kpi-value.danger { color: #A32D2D; }
+  .kpi-value.success { color: #0F6E56; }
+
+  /* Section */
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+  section h2 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  section h2 .num {
+    font-family: 'JetBrains Mono', monospace;
+    color: #B4B2A9;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  section .lede {
+    font-size: 16px;
+    color: #5F5E5A;
+    margin-bottom: 24px;
+    max-width: 720px;
+  }
+  .chart-wrap {
+    background: white;
+    border: 1px solid #E5E5DE;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .chart-wrap canvas { max-width: 100%; }
+  .chart-container {
+    position: relative;
+    width: 100%;
+  }
+  .h-240 { height: 240px; }
+  .h-260 { height: 260px; }
+  .h-280 { height: 280px; }
+  .h-300 { height: 300px; }
+
+  /* Scale problem two cards */
+  .scale-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .scale-card {
+    background: white;
+    border: 1px solid #E5E5DE;
+    border-radius: 8px;
+    padding: 24px;
+  }
+  .scale-card-label {
+    font-size: 13px;
+    color: #6B6B66;
+    margin-bottom: 12px;
+  }
+  .scale-card-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 56px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .scale-card-value.cb { color: #D85A30; }
+  .scale-card-value.fa { color: #BA7517; }
+  .scale-card-sub {
+    font-size: 15px;
+    color: #5F5E5A;
+    margin-bottom: 16px;
+  }
+  .scale-card-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #888780;
+    margin-bottom: 14px;
+  }
+  .progress {
+    height: 6px;
+    background: #F1EFE8;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill { height: 100%; }
+  .progress-fill.cb { background: #D85A30; }
+  .progress-fill.fa { background: #BA7517; }
+
+  /* Metric cards for facts */
+  .fact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .fact-card {
+    background: white;
+    border: 1px solid #E5E5DE;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .fact-label {
+    font-size: 13px;
+    color: #6B6B66;
+    margin-bottom: 10px;
+  }
+  .fact-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .fact-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .fact-pct {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .fact-pct.cb { color: #D85A30; }
+  .fact-pct.fa { color: #BA7517; }
+  .fact-note {
+    font-size: 12px;
+    color: #888780;
+    margin-top: 4px;
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #E5E5DE;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F1EFE8;
+  }
+  th {
+    background: #F9F8F4;
+    font-weight: 600;
+    color: #5F5E5A;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  td.num, th.num { text-align: right; font-family: 'JetBrains Mono', monospace; }
+  tr:last-child td { border-bottom: none; }
+  td.highlight-cb { color: #D85A30; font-weight: 600; }
+  td.highlight-fa { color: #BA7517; font-weight: 600; }
+
+  /* Methodology box */
+  .methodology {
+    background: #F9F8F4;
+    border-left: 3px solid #B4B2A9;
+    padding: 16px 20px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: #5F5E5A;
+    border-radius: 0 6px 6px 0;
+  }
+  .methodology strong {
+    color: #1A1A18;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .methodology code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid #E5E5DE;
+    color: #1A1A18;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #E5E5DE;
+    font-size: 13px;
+    color: #888780;
+  }
+  footer h3 {
+    font-size: 14px;
+    color: #1A1A18;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  footer ul {
+    list-style: none;
+    padding: 0;
+  }
+  footer ul li {
+    padding: 4px 0;
+  }
+  footer code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: #F1EFE8;
+    padding: 1px 6px;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 800px) {
+    .container { padding: 24px 16px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .scale-grid, .fact-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 28px; }
+    .scale-card-value { font-size: 44px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .chart-wrap, .fact-card, .scale-card, .kpi { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="header">
+  <div class="eyebrow">Анализ • MyDrama Payments</div>
+  <h1>Prevention Alerts — январь 2026</h1>
+  <p class="subtitle">Расследование текущего использования prevention alerts и потенциал автоматизации реакции.</p>
+  <div class="meta">
+    <span class="meta-item">📅 Период: 2026-01-01 — 2026-01-31</span>
+    <span class="meta-item">🎯 Продукт: MyDrama (4 канала)</span>
+    <span class="meta-item">📊 5,701 alerts • 2,520 уник. юзеров</span>
+  </div>
+</header>
+
+<div class="exec-summary">
+  <h2>Главный вывод</h2>
+  <p><strong>59% всех CB и 48% всех FA</strong> MyDrama за январь пришли на ордера, по которым мы предварительно получили prevention alert. То есть знали о риске — но не действовали.</p>
+  <p>Проактивной автоматизации на prevention alert нет: <strong>48% алертов</strong> остаются без действия в первые сутки. Остальные кенселы и рефанды — побочные процессы (саппорт, RDR, юзерские запросы), а не реакция на alert.</p>
+  <p>Из событий, пришедших СТРОГО после alert (came_after): <strong>2,279 CB</strong> и <strong>2,212 FA</strong> на самом ордере + <strong>51 CB</strong> и <strong>39 FA</strong> на ребилах подписки — потенциально предотвратимы автоматизацией.</p>
+</div>
+
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="kpi-label">Всего prevention alerts</div>
+    <div class="kpi-value">5,701</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Уникальных юзеров</div>
+    <div class="kpi-value">2,520</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Проактивных реакций</div>
+    <div class="kpi-value danger">0</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">Match с card_orders</div>
+    <div class="kpi-value">97.2%</div>
+  </div>
+</div>
+
+<section>
+  <h2><span class="num">01</span>Масштаб проблемы</h2>
+  <p class="lede">Большая часть январских CB и FA в MyDrama пришла на ордера, по которым мы предварительно получили prevention alert. Это означает что Solidgate (через свою партнёрскую сеть алертов) даёт нам предсказание риска — но мы его не используем для автоматического действия.</p>
+  <div class="scale-grid">
+    <div class="scale-card">
+      <div class="scale-card-label">Chargebacks MyDrama / январь 2026</div>
+      <div class="scale-card-value cb">59%</div>
+      <div class="scale-card-sub">на ордерах с prevention alert</div>
+      <div class="scale-card-detail">3,170 из 5,342</div>
+      <div class="progress"><div class="progress-fill cb" style="width: 59%;"></div></div>
+    </div>
+    <div class="scale-card">
+      <div class="scale-card-label">Fraud alerts MyDrama / январь 2026</div>
+      <div class="scale-card-value fa">48%</div>
+      <div class="scale-card-sub">на ордерах с prevention alert</div>
+      <div class="scale-card-detail">3,140 из 6,538</div>
+      <div class="progress"><div class="progress-fill fa" style="width: 48%;"></div></div>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Методология</strong>
+    Сравниваем кол-во CB и FA в январе у которых <code>order_id</code> совпадает с <code>Order_ID</code> из файла prevention alerts. Часть этих CB/FA пришла ДО prevention alert (см. блок 3) — там предотвращение невозможно по определению.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">02</span>Что мы делаем в 24 часа после alert</h2>
+  <p class="lede">Распределение действий с подпиской/ордером в первые 24 часа после получения prevention alert. Цвет указывает: красный — бездействие, остальные — частичное действие. Эти "реакции" — побочные процессы, не запуск по prevention alert (см. ниже).</p>
+  <div class="chart-wrap">
+    <div class="chart-container h-260">
+      <canvas id="chartActions" role="img" aria-label="Действия после prevention alert"></canvas>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Что считается реакцией</strong>
+    <code>cancel_within_1d</code> — подписка отменена в течение 24ч после alert (любая причина). <code>refund_within_1d</code> — рефанд произошёл в течение 24ч.
+    <br><br>
+    <strong>Почему это не реакция на alert</strong>
+    Из 1969 кенселов: только 7% имели предшествующий CB/FA триггер. Остальные 93% — без видимого триггера, но при этом нет automation: медиана от FA до кенсела = 24 часа, не минуты. Это говорит о ручном процессе саппорта или batch-job. Аналогично для рефандов (97% без видимого триггера).
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">03</span>Окно для действия — когда приходят CB и FA</h2>
+  <p class="lede">Распределение времени между prevention alert и chargeback / fraud alert. Большая часть событий приходит в первые 1–3 дня после alert. 26% CB и 29% FA приходят даже ДО alert — там предотвращение невозможно.</p>
+  <div class="chart-wrap">
+    <div class="chart-container h-280">
+      <canvas id="chartTiming" role="img" aria-label="Гистограмма времени между alert и CB/FA"></canvas>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Перцентили</strong>
+    CB после alert: медиана = 7 часов (p50), 90% — в 4 дня (p90). FA после alert: медиана = 1.7 дня, 90% — в 3 дня. <br>
+    <strong>Что это значит:</strong> ручной процесс не успеет. Если хотим предотвращать — нужна автоматика реального времени, реагирующая в течение часов.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">04</span>Статус подписки на момент alert</h2>
+  <p class="lede">Не все ордера с alert привязаны к активной подписке. Для предотвращения важно понимать: подписку можно кенселить только если она активна. Для one-time покупок (Welcome Offer, более старые expired-ребилы) — единственное возможное действие это рефанд ордера.</p>
+  <div class="chart-wrap">
+    <div class="chart-container h-280">
+      <canvas id="chartSubStatus" role="img" aria-label="Статус подписки на момент alert"></canvas>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Категории</strong>
+    <code>active_at_alert</code> — подписка активна. <code>cancelled_at_alert</code> — отменена ДО alert (юзер сам / саппорт / FA от банка). <code>expired_at_alert</code> — закончилась естественно. <code>no_subscription</code> — ордер не привязан к подписке в нашей таблице (90%+ — Welcome Offer ребилы и expired-cycles, которые Solidgate всё ещё биллит).
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">05</span>Концентрация — рецидивисты</h2>
+  <p class="lede">8% юзеров (212 человек) с 5+ алертами генерят 33% всех prevention alerts. Эти юзеры также дают пропорционально больше CB и FA — топ-52 рецидивиста имеют в среднем по 5.9 CB и 9.9 FA каждый. Кандидаты в блок-лист.</p>
+  <div class="chart-wrap">
+    <div class="chart-container h-280">
+      <canvas id="chartRecidivists" role="img" aria-label="Юзеры по числу алертов"></canvas>
+    </div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Группа (alerts/юзер)</th>
+        <th class="num">Юзеров</th>
+        <th class="num">Алертов</th>
+        <th class="num">Avg CB / юзер</th>
+        <th class="num">Avg FA / юзер</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1 alert</td><td class="num">1,394</td><td class="num">1,394</td><td class="num">0.8</td><td class="num">0.7</td></tr>
+      <tr><td>2–4 alerts</td><td class="num">914</td><td class="num">2,294</td><td class="num">1.7</td><td class="num">1.8</td></tr>
+      <tr><td>5–9 alerts</td><td class="num">160</td><td class="num">1,057</td><td class="num">3.8</td><td class="num">4.9</td></tr>
+      <tr><td>10+ alerts</td><td class="num">52</td><td class="num">794</td><td class="num highlight-cb">5.9</td><td class="num highlight-fa">9.9</td></tr>
+    </tbody>
+  </table>
+  <div class="methodology">
+    <strong>CB и FA считаются по всем ордерам юзера за всё время</strong>
+    Не только за январь и не только на ордерах из alerts. Это даёт полный фрод-профиль юзера.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">06</span>Уже случилось — было потенциально предотвратимо</h2>
+  <p class="lede">События, пришедшие СТРОГО после prevention alert (came_after). Это факт из данных: при текущем 0 реакции вот сколько событий произошло, которые в теории можно было бы предотвратить автоматическим действием на alert. Реальный эффект автоматизации будет ниже из-за событий, приходящих в первые часы (см. блок 3).</p>
+  <div class="fact-grid">
+    <div class="fact-card">
+      <div class="fact-label">CB на ордер из alert (came_after)</div>
+      <div class="fact-row">
+        <div class="fact-value">2,279</div>
+        <div class="fact-pct cb">43% всех CB MyDrama</div>
+      </div>
+      <div class="fact-note">из 3,170 всего CB на этих ордерах; 891 пришли до alert (не предотвратить)</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-label">FA на ордер из alert (came_after)</div>
+      <div class="fact-row">
+        <div class="fact-value">2,212</div>
+        <div class="fact-pct fa">34% всех FA MyDrama</div>
+      </div>
+      <div class="fact-note">из 3,140 всего FA на этих ордерах; 928 пришли до alert (не предотвратить)</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-label">CB на ребилах после alert</div>
+      <div class="fact-row">
+        <div class="fact-value">51</div>
+      </div>
+      <div class="fact-note">из 2,473 ребилов прошедших после alert (448 успешных). Ребилы можно остановить кенселом подписки.</div>
+    </div>
+    <div class="fact-card">
+      <div class="fact-label">FA на ребилах после alert</div>
+      <div class="fact-row">
+        <div class="fact-value">39</div>
+      </div>
+      <div class="fact-note">эти ребилы прошли потому что подписка не была кенселена по prevention alert</div>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Important caveat</strong>
+    Не вся 2,279 CB / 2,212 FA автоматически предотвратимы. Медиана CB = 7 часов после alert, p10 = -0.5 дня (т.е. 26% пришли раньше alert). Реальный потенциал предотвращения зависит от того в какое окно сработает автоматика. Точные числа — после A/B-теста.
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">07</span>Под риском — история юзеров за 120 дней до alert</h2>
+  <p class="lede">У юзеров с alerts было 23,048 успешных ордеров за 120 дней до alert (≈ chargeback window). 40% уже задиспучено (CB или FA), 37% — fraud-репорт. Чистые 11,292 ордеров на $377K — потенциальная цель расширенной автоматизации (рефанд назад по истории юзера), но это спекулятивная оценка, не прямое предсказание.</p>
+  <div class="chart-wrap">
+    <div class="chart-container h-260">
+      <canvas id="chartPrior" role="img" aria-label="Prior history 120 days"></canvas>
+    </div>
+  </div>
+  <div class="methodology">
+    <strong>Логика</strong>
+    Если юзер получил prevention alert на один ордер, это сигнал о его готовности диспутить. Все его предыдущие ордера потенциально под риском диспута (в окне 120 дней от каждого ордера). 9,303 уже стали CB — упущенная возможность. 11,292 ещё чистые — кандидаты на проактивный рефанд "назад по истории". <br><br>
+    <strong>Что это НЕ означает</strong>
+    Не все 11,292 чистых ордера получат CB. Часть юзеров — single-event фродеры, часть просто разовая ошибка. Точная оценка — после теста.
+  </div>
+</section>
+
+<footer>
+  <h3>Источники данных и методология</h3>
+  <ul>
+    <li>📂 <strong>Prevention alerts:</strong> Google Sheet → external table <code>solid-analytics-test.solid_raw.prevention_alerts_temp</code></li>
+    <li>💳 <strong>Card orders:</strong> <code>solid-analytics-test.solid_raw.card_orders</code></li>
+    <li>🔴 <strong>Chargebacks:</strong> <code>solid-analytics-test.solid_raw.chargebacks</code></li>
+    <li>🟡 <strong>Fraud alerts:</strong> <code>solid-analytics-test.solid_raw.fraud_alerts</code></li>
+    <li>🔁 <strong>Subscriptions:</strong> <code>solid-analytics-test.solid_raw.subscriptions</code></li>
+    <li>📑 <strong>Subscription invoices:</strong> <code>solid-analytics-test.solid_raw.subscription_invoices</code></li>
+  </ul>
+  <p style="margin-top: 20px;">Match с card_orders: 97.2% (5,539 из 5,701). Из не-сматченных 162: 147 нашлись в apm_orders (PayPal — игнорируем для этого анализа), 15 — реальный gap (старые ордера до backfill).</p>
+  <p style="margin-top: 12px;">Подготовлено в рамках расследования возможности автоматизации реакции на prevention alerts в MyDrama Payments. Все цифры — янавар 2026. Для актуальных данных — пересчитать запросы.</p>
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script>
+(function(){
+  const C = {
+    gray: '#888780',
+    grayDark: '#5F5E5A',
+    grayLight: '#B4B2A9',
+    coral: '#D85A30',
+    amber: '#BA7517',
+    teal: '#1D9E75',
+    purple: '#7F77DD',
+    text: '#1A1A18',
+    textSecondary: '#5F5E5A'
+  };
+
+  Chart.register(ChartDataLabels);
+  Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+  Chart.defaults.color = C.textSecondary;
+  Chart.defaults.font.size = 13;
+
+  // Block 2: Actions
+  new Chart(document.getElementById('chartActions'), {
+    type: 'bar',
+    data: {
+      labels: ['Ничего', 'Только кенсел', 'Только рефанд', 'Кенсел + рефанд'],
+      datasets: [{
+        data: [2725, 1488, 845, 481],
+        backgroundColor: [C.coral, C.amber, C.teal, C.purple],
+        borderWidth: 0,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { right: 90 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: c => c.parsed.x.toLocaleString() + ' alerts (' + Math.round(c.parsed.x / 55.39) + '%)'
+          }
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: C.text,
+          font: { size: 13, weight: 600, family: "'JetBrains Mono', monospace" },
+          formatter: v => v.toLocaleString() + ' (' + Math.round(v / 55.39) + '%)'
+        }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() }, grid: { color: '#F1EFE8' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  // Block 3: Timing
+  new Chart(document.getElementById('chartTiming'), {
+    type: 'bar',
+    data: {
+      labels: ['до alert', '0–1 день', '1–3 дня', '3–7 дней', '7–14 дней', '14–30 дней', '30+ дней'],
+      datasets: [
+        { label: 'Chargeback', data: [821, 1590, 362, 204, 99, 45, 49], backgroundColor: C.coral, borderWidth: 0, borderRadius: 3 },
+        { label: 'Fraud alert', data: [915, 202, 1700, 122, 128, 56, 14], backgroundColor: C.amber, borderWidth: 0, borderRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 24 } },
+      plugins: {
+        legend: { display: true, position: 'top', align: 'end', labels: { boxWidth: 12, padding: 16, font: { size: 13 } } },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: C.text,
+          font: { size: 11, weight: 600, family: "'JetBrains Mono', monospace" },
+          formatter: v => v >= 100 ? v.toLocaleString() : v
+        }
+      },
+      scales: {
+        x: { ticks: { autoSkip: false, maxRotation: 25 }, grid: { display: false } },
+        y: { beginAtZero: true, grid: { color: '#F1EFE8' } }
+      }
+    }
+  });
+
+  // Block 4: Sub status
+  new Chart(document.getElementById('chartSubStatus'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Активная подписка', 'Уже отменена', 'Expired', 'Без подписки / one-time'],
+      datasets: [{
+        data: [3067, 1376, 488, 770],
+        backgroundColor: [C.teal, C.amber, C.gray, C.purple],
+        borderWidth: 2,
+        borderColor: '#FAFAF7'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'right',
+          labels: {
+            boxWidth: 14,
+            padding: 12,
+            font: { size: 13 },
+            generateLabels: function(chart) {
+              const data = chart.data;
+              const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+              return data.labels.map((label, i) => ({
+                text: label + ' — ' + data.datasets[0].data[i].toLocaleString() + ' (' + Math.round(data.datasets[0].data[i] / total * 100) + '%)',
+                fillStyle: data.datasets[0].backgroundColor[i],
+                strokeStyle: data.datasets[0].backgroundColor[i],
+                index: i
+              }));
+            }
+          }
+        },
+        tooltip: { callbacks: { label: c => c.label + ': ' + c.parsed.toLocaleString() } },
+        datalabels: {
+          color: '#fff',
+          font: { size: 14, weight: 700, family: "'JetBrains Mono', monospace" },
+          formatter: (v, ctx) => {
+            const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+            return Math.round(v / total * 100) + '%';
+          }
+        }
+      }
+    }
+  });
+
+  // Block 5: Recidivists
+  new Chart(document.getElementById('chartRecidivists'), {
+    type: 'bar',
+    data: {
+      labels: ['1', '2–4', '5–9', '10+'],
+      datasets: [
+        { label: 'Юзеров', data: [1394, 914, 160, 52], backgroundColor: C.grayLight, borderWidth: 0, borderRadius: 3 },
+        { label: 'Алертов', data: [1394, 2294, 1057, 794], backgroundColor: C.coral, borderWidth: 0, borderRadius: 3 }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { top: 24 } },
+      plugins: {
+        legend: { display: true, position: 'top', align: 'end', labels: { boxWidth: 12, padding: 16, font: { size: 13 } } },
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          color: C.text,
+          font: { size: 11, weight: 600, family: "'JetBrains Mono', monospace" },
+          formatter: v => v.toLocaleString()
+        }
+      },
+      scales: {
+        y: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() }, grid: { color: '#F1EFE8' } },
+        x: {
+          title: { display: true, text: 'Алертов на юзера', font: { size: 12, weight: 500 }, color: C.textSecondary },
+          grid: { display: false }
+        }
+      }
+    }
+  });
+
+  // Block 7: Prior
+  new Chart(document.getElementById('chartPrior'), {
+    type: 'bar',
+    data: {
+      labels: ['Чистые (под риском)', 'Уже CB', 'Уже FA'],
+      datasets: [{
+        data: [11292, 9303, 8473],
+        backgroundColor: [C.teal, C.coral, C.amber],
+        borderWidth: 0,
+        borderRadius: 4
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: { right: 80 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => c.parsed.x.toLocaleString() + ' orders' } },
+        datalabels: {
+          anchor: 'end',
+          align: 'end',
+          color: C.text,
+          font: { size: 13, weight: 600, family: "'JetBrains Mono', monospace" },
+          formatter: v => v.toLocaleString()
+        }
+      },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: v => v.toLocaleString() }, grid: { color: '#F1EFE8' } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>
